@@ -8,11 +8,6 @@ import Tooltip from "react-bootstrap/Tooltip";
 
 class Form extends React.Component {
 
-    // handleTitleClick = () => {
-    //     // Redirect to the specified URL
-    //     window.location.href = 'https://noel704.github.io/Utility/';
-    // };
-
     constructor(props) {
         super(props);
         this.state = {
@@ -44,11 +39,11 @@ class Form extends React.Component {
         //If the user has input a prefered alias then we use it, if not, we generate one
         //Be sure to change minilinkit.com to your domain
         var generatedKey = nanoid(5);
-        var generatedURL = "minilinkit.com/" + generatedKey
+        var generatedURL = "shrinker.utility.com/" + generatedKey
 
         if (this.state.preferedAlias !== '') {
             generatedKey = this.state.preferedAlias
-            generatedURL = "minilinkit.com/" + this.state.preferedAlias
+            generatedURL = "shrinker.utility.com/" + this.state.preferedAlias
         }
 
         const db = getDatabase();
@@ -154,7 +149,7 @@ class Form extends React.Component {
                 style={{ position: 'absolute', top: 0, left: 0, margin: '10px',color:'white' }} 
                 >Utility</h3> */}
     
-<a href="https://noel704.github.io/Utility" target="_blank">
+<a href="https://utility.noelav07.me" target="_blank">
                     <h3 style=
                     {{ position: 'absolute', top: 0, left: 0, margin: '10px',color:'white' }} 
                     >
@@ -193,7 +188,7 @@ class Form extends React.Component {
                         <label htmlFor="basic-url">Short URL</label>
                         <div className="input-group mb-3">
                             <div className="input-group-prepend">
-                                <span className="input-group-text">minilinkit.com/</span>
+                                <span className="input-group-text">utility.noelav07.me/</span>
                             </div>
                             <input
                                 id="preferedAlias"
