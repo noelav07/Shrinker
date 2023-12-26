@@ -1,0 +1,38 @@
+# Build environment
+FROM node:14.21.3-alpine as build
+
+# Set the working directory
+WORKDIR /app
+
+# Set the PATH environment variable
+# ENV PATH /app/node_modules/.bin:$PATH
+
+# Copy package.json and install dependencies
+#COPY package.json /app/package.json
+#RUN npm install --silent
+
+# Workaround for potential npm install issues
+#RUN npm config set unsafe-perm true
+
+# Install react-scripts globally
+#RUN npm install react-scripts@3.0.1 -g --silent
+
+# Copy the entire application
+COPY . /app
+
+# Build the React application
+RUN npm i --silent
+
+RUN npm run build
+
+# Production environment
+FROM nginx:1.16.0-alpine
+
+# Copy the build output from the build environment to the nginx web server directory
+COPY --from=build /app/build /usr/share/nginx/html
+
+# Expose port 80
+EXPOSE 80
+
+# Run nginx with daemon off in the foreground
+CMD ["nginx", "-g", "daemon off;"]
